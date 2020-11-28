@@ -18,7 +18,7 @@ def serialize(root):
 def deserialize(string):
     if string == "None":
         return None
-    pat = re.compile(r'^\(([^\s)]+)\s((\(.+\))|None)\s((\(.+\))|None)\)$')
+    pat = re.compile(r'^\(([^\s]+)\s((\(.+\))|None)\s((\(.+\))|None)\)$')
     m = re.match(pat, string)
     if m is None:
         raise ValueError("Unrecognized string format")
