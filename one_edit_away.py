@@ -28,14 +28,14 @@ def one_away(s1, s2):
     elif n_diff == 1:
         # One char of difference, only one insert allowed
         i_smaller = 0
-        # Iterate only through the smaller string
-        for i_larger in range(n_smaller):
-            if s_larger[i_larger] != s_smaller[i_smaller]:
+        for c in s_larger:
+            # Reached past s_smaller or characters don't match
+            if i_smaller == n_smaller or c != s_smaller[i_smaller]:
                 n_edits += 1
                 if n_edits > 1:
                     return False
             else:
-                # but don't advance the index to the smaller one
+                # Don't advance the index to the smaller one
                 # unless the characters match
                 i_smaller += 1
         return True
@@ -49,8 +49,10 @@ if __name__ == '__main__':
     s2 = 'ple' # One removed
     s3 = 'bale' # One replaced
     s4 = 'bake' # Two away!!
+    s5 = 'peles' # Two away!!
 
     assert(one_away(s0, s1))
     assert(one_away(s0, s2))
     assert(one_away(s0, s3))
     assert(not one_away(s0, s4))
+    assert(not one_away(s0, s5))
